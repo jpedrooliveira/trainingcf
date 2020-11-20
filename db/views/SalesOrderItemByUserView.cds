@@ -1,5 +1,5 @@
-using {trainingcf.salesorder as salesorder} from '../../schema/salesorder';
-using {trainingcf.user as user} from '../../schema/user';
+using {trainingcf.salesorder as salesorder} from '../schema/salesorder';
+using {trainingcf.user as user} from '../schema/user';
 
 namespace trainingcf.views;
 

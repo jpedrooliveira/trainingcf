@@ -1,0 +1,11 @@
+PROCEDURE "training.procedures::DefinirNovoPrecoMassivamenteProc" (
+    IN P_PERCENT DECIMAL
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY DefinirNovoPrecoMassivamenteProc
+
+AS
+BEGIN
+    UPDATE TRAININGCF_PRODUCTS_TBLPRODUCTS
+    SET SALESPRICE = SALESPRICE * :P_PERCENT;
+END
