@@ -161,7 +161,7 @@
     </shape>
   
     <shape expanded="true" modelObjectName="ProductsByClient" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-91" y="206"/>
+      <upperLeftCorner x="-167" y="209"/>
       <rectangleSize height="30" width="312"/>
     </shape>
     <shape modelObjectName="TRAININGCF_PRODUCTS_TBLPRODUCTS" modelObjectNameSpace="ProductsByClient" modelObjectType="JoinNodeInput">
