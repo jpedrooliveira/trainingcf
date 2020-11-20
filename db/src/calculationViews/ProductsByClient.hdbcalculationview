@@ -4,15 +4,54 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="TRAININGCF_PRODUCTS_TBLPRODUCTS">
-    <resourceUri>TRAININGCF_PRODUCTS_TBLPRODUCTS</resourceUri>
+  <DataSource id="TRAININGCF_SALESORDER_TBLSALESORDER">
+    <resourceUri>TRAININGCF_SALESORDER_TBLSALESORDER</resourceUri>
   </DataSource>
   <DataSource id="TRAININGCF_SALESORDER_TBLSALESORDERITEM">
     <resourceUri>TRAININGCF_SALESORDER_TBLSALESORDERITEM</resourceUri>
   </DataSource>
+  <DataSource id="TRAININGCF_PRODUCTS_TBLPRODUCTS">
+    <resourceUri>TRAININGCF_PRODUCTS_TBLPRODUCTS</resourceUri>
+  </DataSource>
 </dataSources>
 <calculationViews>
-  <calculationView xsi:type="Calculation:JoinView" id="ProductsByClient" cardinality="CN_N" joinType="inner">
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TRAININGCF_SALESORDER_TBLSALESORDER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="ProductsByClient_1" cardinality="CN_N" joinType="inner" multiJoinNode="ProductsByClient" multiJoinCentralTable="TRAININGCF_PRODUCTS_TBLPRODUCTS" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="ID_1"/>
+      <viewAttribute id="CREATEDAT_1"/>
+      <viewAttribute id="CREATEDBY_1"/>
+      <viewAttribute id="MODIFIEDAT_1"/>
+      <viewAttribute id="MODIFIEDBY_1"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="SALESORDER_ID"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="ID_2"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TRAININGCF_SALESORDER_TBLSALESORDERITEM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_1" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDAT_1" source="CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_1" source="CREATEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT_1" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_1" source="MODIFIEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDER_ID" source="SALESORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_2" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDER_ID" source="ID"/>
+    </input>
+    <joinAttribute name="SALESORDER_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="ProductsByClient_2" cardinality="CN_N" joinType="inner" multiJoinNode="ProductsByClient" multiJoinCentralTable="TRAININGCF_PRODUCTS_TBLPRODUCTS" multiJoinOrder="Outside In">
     <viewAttributes>
       <viewAttribute id="ID"/>
       <viewAttribute id="CREATEDAT"/>
@@ -34,6 +73,7 @@
       <viewAttribute id="STATUS"/>
       <viewAttribute id="SALESORDER_ID"/>
       <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="ID_2"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="TRAININGCF_PRODUCTS_TBLPRODUCTS">
@@ -50,101 +90,106 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="BASEPRICE" source="BASEPRICE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
     </input>
-    <input node="TRAININGCF_SALESORDER_TBLSALESORDERITEM">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_1" source="ID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDAT_1" source="CREATEDAT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_1" source="CREATEDBY"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT_1" source="MODIFIEDAT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_1" source="MODIFIEDBY"/>
+    <input node="ProductsByClient_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_1" source="ID_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDAT_1" source="CREATEDAT_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_1" source="CREATEDBY_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT_1" source="MODIFIEDAT_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_1" source="MODIFIEDBY_1"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDER_ID" source="SALESORDER_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_2" source="ID_2"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="PRODUCT_ID"/>
     </input>
     <joinAttribute name="ID"/>
   </calculationView>
 </calculationViews>
-<logicalModel id="ProductsByClient">
+<logicalModel id="ProductsByClient_2">
   <attributes>
     <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ID"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="ID"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="ID"/>
     </attribute>
     <attribute id="CREATEDAT" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CREATEDAT"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="CREATEDAT"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="CREATEDAT"/>
     </attribute>
     <attribute id="CREATEDBY" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CREATEDBY"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="CREATEDBY"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="CREATEDBY"/>
     </attribute>
     <attribute id="MODIFIEDAT" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MODIFIEDAT"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="MODIFIEDAT"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="MODIFIEDAT"/>
     </attribute>
     <attribute id="MODIFIEDBY" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MODIFIEDBY"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="MODIFIEDBY"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="MODIFIEDBY"/>
     </attribute>
     <attribute id="VALIDFROM" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="VALIDFROM"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="VALIDFROM"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="VALIDFROM"/>
     </attribute>
     <attribute id="VALIDTO" order="7" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="VALIDTO"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="VALIDTO"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="VALIDTO"/>
     </attribute>
     <attribute id="NAME" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="NAME"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="NAME"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="NAME"/>
     </attribute>
     <attribute id="MANUFACTURER" order="9" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MANUFACTURER"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="MANUFACTURER"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="MANUFACTURER"/>
     </attribute>
     <attribute id="SALESPRICE" order="10" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="SALESPRICE"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="SALESPRICE"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="SALESPRICE"/>
     </attribute>
     <attribute id="BASEPRICE" order="11" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="BASEPRICE"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="BASEPRICE"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="BASEPRICE"/>
     </attribute>
     <attribute id="QUANTITY" order="12" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="QUANTITY"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="QUANTITY"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="QUANTITY"/>
     </attribute>
     <attribute id="ID_1" order="13" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ID_1"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="ID_1"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="ID_1"/>
     </attribute>
     <attribute id="CREATEDAT_1" order="14" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CREATEDAT_1"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="CREATEDAT_1"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="CREATEDAT_1"/>
     </attribute>
     <attribute id="CREATEDBY_1" order="15" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CREATEDBY_1"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="CREATEDBY_1"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="CREATEDBY_1"/>
     </attribute>
     <attribute id="MODIFIEDAT_1" order="16" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MODIFIEDAT_1"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="MODIFIEDAT_1"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="MODIFIEDAT_1"/>
     </attribute>
     <attribute id="MODIFIEDBY_1" order="17" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MODIFIEDBY_1"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="MODIFIEDBY_1"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="MODIFIEDBY_1"/>
     </attribute>
     <attribute id="STATUS" order="18" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="STATUS"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="STATUS"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="STATUS"/>
     </attribute>
     <attribute id="SALESORDER_ID" order="19" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="SALESORDER_ID"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="SALESORDER_ID"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="SALESORDER_ID"/>
     </attribute>
     <attribute id="PRODUCT_ID" order="20" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PRODUCT_ID"/>
-      <keyMapping columnObjectName="ProductsByClient" columnName="PRODUCT_ID"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="ID_2" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="ProductsByClient_2" columnName="ID_2"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -161,16 +206,25 @@
     </shape>
   
     <shape expanded="true" modelObjectName="ProductsByClient" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-167" y="209"/>
+      <upperLeftCorner x="-243" y="221"/>
       <rectangleSize height="30" width="312"/>
     </shape>
-    <shape modelObjectName="TRAININGCF_PRODUCTS_TBLPRODUCTS" modelObjectNameSpace="ProductsByClient" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="TRAININGCF_PRODUCTS_TBLPRODUCTS" modelObjectNameSpace="ProductsByClient" modelObjectType="JoinNodeInput" multiJoinViewNodeName="ProductsByClient">
       <upperLeftCorner x="30" y="32"/>
       <rectangleSize width="309"/>
     </shape>
-    <shape modelObjectName="TRAININGCF_SALESORDER_TBLSALESORDERITEM" modelObjectNameSpace="ProductsByClient" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="370"/>
+    <shape modelObjectName="TRAININGCF_SALESORDER_TBLSALESORDERITEM" modelObjectNameSpace="ProductsByClient" modelObjectType="JoinNodeInput" multiJoinViewNodeName="ProductsByClient">
+      <upperLeftCorner x="354" y="43"/>
+      <rectangleSize width="370.017578125"/>
+    </shape>
+  
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="ProductsByClient" modelObjectType="JoinNodeInput" multiJoinViewNodeName="ProductsByClient">
+      <upperLeftCorner x="740" y="97"/>
+      <rectangleSize width="136.0234375"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="122" y="266"/>
+      <rectangleSize height="30" width="160"/>
     </shape>
   </shapes>
 </layout>
