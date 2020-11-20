@@ -2,7 +2,7 @@ PROCEDURE "training.procedures::DefinirNovoPrecoMassivamenteProc" (
     IN P_PERCENT DECIMAL
 )
 LANGUAGE SQLSCRIPT
-SQL SECURITY DefinirNovoPrecoMassivamenteProc
+SQL SECURITY DEFINER
 
 AS
 BEGIN
