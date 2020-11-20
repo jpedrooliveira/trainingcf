@@ -7,4 +7,6 @@ entity TblProducts : Base, withTemporal {
     salesPrice: Decimal;
     basePrice: Decimal;
     quantity: Integer;
+
+    virtual salesMargin: Decimal;
 }

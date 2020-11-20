@@ -7,5 +7,5 @@ define view TotalSalesByClientView as
     select from salesorder.TblSalesOrderItem {
         salesorder.client.ID as ![clientId],
         salesorder.client.name as ![clientName],
-        sum(product.quantity * product.salesPrice) as ![totalSalesValor]
+        sum(product.quantity * product.salesPrice) as ![totalSalesValor]:Decimal
     } group by salesorder.client.ID, salesorder.client.name;
