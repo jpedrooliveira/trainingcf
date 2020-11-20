@@ -1,4 +1,4 @@
-PROCEDURE "training.procedures::DefinirNovoPrecoMassivamenteProc" (
+PROCEDURE "trainingcf.procedures::DefinirNovoPrecoMassivamenteProc" (
     IN P_PERCENT DECIMAL
 )
 LANGUAGE SQLSCRIPT
