@@ -3,3 +3,7 @@ using from './schema/products';
 using from './schema/user';
 using from './schema/salesorder';
 using from './schema/clients';
+using from './src/views/SalesOrderItemByUserView';
+using from './src/views/ProductsByClient';
+using from './src/views/TotalSalesByClientView';
+using from './src/views/AvailableProductsView';
